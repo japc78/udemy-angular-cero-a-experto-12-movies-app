@@ -25,12 +25,15 @@ export class HomeComponent implements OnInit {
     // Se realiza con dos opciones porque hay navegadores que la primera opción muestra undefined
     const scrollPosition = (document.documentElement.scrollTop || document.body.scrollTop) + 1500;
     const scrollMax = (document.documentElement.scrollHeight || document.body.scrollHeight);
-    // console.log(scrollPosition, scrollMax);
+    console.log(scrollPosition, scrollMax);
+
+    // Si esta cargando
+    if (this.moviesService.loading) {return; }
 
     if (scrollPosition > scrollMax) {
       this.moviesService.getMoviesShowTimes()
-      .subscribe( resp => {
-        this.movies.push(...resp.results);
+      .subscribe( movies => {
+        this.movies.push(...movies);
       });
     }
   }
@@ -39,9 +42,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.moviesService.getMoviesShowTimes()
-      .subscribe( resp => {
-        this.moviesSlideShow = resp.results;
-        this.movies = resp.results;
+      .subscribe( movies => {
+        this.moviesSlideShow = movies;
+        this.movies = movies;
       });
   }
 }

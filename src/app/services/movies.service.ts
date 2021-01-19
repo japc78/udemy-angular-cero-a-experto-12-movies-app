@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { MovieShowTimes } from '../interfaces/movieShowtimes-response';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { MovieShowTimes, Movie } from '../interfaces/movieShowtimes-response';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class MoviesService {
 
   private BASE_URL = 'https://api.themoviedb.org/3';
   private page = 1;
+  public loading = false;
 
 
   constructor(private http: HttpClient) { }
@@ -23,17 +24,27 @@ export class MoviesService {
     };
   }
 
-  getMoviesShowTimes(): Observable<MovieShowTimes> {
+  getMoviesShowTimes(): Observable<Movie[]> {
+
+    if (this.loading) {
+      //of transforma a un obserbable
+      return of([]);
+    }
+
+    this.loading = true;
     return this.http.get<MovieShowTimes>(
       `${this.BASE_URL}/movie/now_playing`,
       { params: this.params })
         .pipe(
+          map(resp => resp.results),
           // Tap es parecido al map pero lo único que realiza es disparar un efecto secundario.
           // En resumen, ejecuta el código cada vez que el observable emite un valor, esta forma
           // cada vez que realiza la petición incrementa la pagina para la siguiente petición.
           tap( () => {
             this.page += 1;
+            this.loading = false;
             // console.log('Pagina: ' + this.page);
+            console.log('loading...');
           })
         );
   }
