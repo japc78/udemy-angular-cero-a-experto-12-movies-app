@@ -48,4 +48,14 @@ export class MoviesService {
           })
         );
   }
+
+  //https://api.themoviedb.org/3/search/movie?api_key=fb35a100cdeccee771a59a11d76de09a&language=en-US&page=1&include_adult=false
+  findMovieForTitle( query: string): Observable<Movie[]> {
+    // Cambiamos la pagina sin mutar el objeto de params
+    const params = { ...this.params, page: '1', query};
+    // console.log(params);
+
+    return this.http.get<MovieShowTimes>(`${this.BASE_URL}/search/movie`, { params })
+      .pipe( map(resp => resp.results) );
+  }
 }

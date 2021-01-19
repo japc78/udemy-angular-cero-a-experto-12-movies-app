@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MoviesService } from '../../services/movies.service';
+import { Movie } from '../../interfaces/movieShowtimes-response';
 
 @Component({
   selector: 'app-find',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FindComponent implements OnInit {
 
-  constructor() { }
+  public movies: Movie[] = [];
+
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private moviesService: MoviesService) { }
 
   ngOnInit(): void {
+
+    this.activateRoute.params
+      .subscribe( params => {
+        console.log(params.text);
+        this.moviesService.findMovieForTitle(params.text)
+          .subscribe(movies => {
+            this.movies = movies;
+            console.log(movies);
+
+          });
+      });
   }
 
 }
