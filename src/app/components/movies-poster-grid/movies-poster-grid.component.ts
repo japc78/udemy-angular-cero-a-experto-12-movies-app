@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Movie } from '../../interfaces/movieShowtimes-response';
-import { Observable } from 'rxjs';
+import { StarRatingComponent } from 'ng-starrating';
 
 @Component({
   selector: 'app-movies-poster-grid',

@@ -6,7 +6,15 @@
           <h5 class="card-title">{{ movie.title }}</h5>
         </div>
         <div class="card-footer d-flex justify-content-between">
-          <small class="text-muted">***</small>
+          <small class="text-muted">
+            <star-rating
+                [value]="movie.vote_average"
+                totalstars="10"
+                checkedcolor="yellow"
+                uncheckedcolor="grey"
+                size="16px"
+                readonly="false"></star-rating>
+          </small>
           <small class="text-white">{{movie.vote_average | number: '1.1-2'}}</small>
         </div>
       </div>

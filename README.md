@@ -32,3 +32,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [developers.themoviedb.org](https://developers.themoviedb.org/3/getting-started/introduction).
 - [Convert JSON into gorgeous, typesafe code in any language](https://quicktype.io/).
 - [Slider](https://swiperjs.com/).
+- [Star-Rating](https://www.npmjs.com/package/ng-starrating).
