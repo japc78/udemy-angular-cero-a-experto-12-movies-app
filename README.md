@@ -31,3 +31,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [The Movie DB](https://www.themoviedb.org/)
 - [developers.themoviedb.org](https://developers.themoviedb.org/3/getting-started/introduction).
 - [Convert JSON into gorgeous, typesafe code in any language](https://quicktype.io/).
+- [Slider](https://swiperjs.com/).
