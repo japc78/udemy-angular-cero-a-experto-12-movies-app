@@ -1,0 +1,14 @@
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let movie of movies">
+      <div class="card h-100 text-white bg-dark poster">
+        <img [src]="baseUrl + movie.poster_path" class="card-img-top img-fluid" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <small class="text-muted">***</small>
+          <small class="text-white">{{movie.vote_average | number: '1.1-2'}}</small>
+        </div>
+      </div>
+    </div>
+</div>
