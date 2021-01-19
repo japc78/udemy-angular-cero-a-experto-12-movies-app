@@ -27,7 +27,7 @@ export class MoviesService {
   getMoviesShowTimes(): Observable<Movie[]> {
 
     if (this.loading) {
-      //of transforma a un obserbable
+      // of transforma a un observable
       return of([]);
     }
 
@@ -44,7 +44,7 @@ export class MoviesService {
             this.page += 1;
             this.loading = false;
             // console.log('Pagina: ' + this.page);
-            console.log('loading...');
+            // console.log('loading...');
           })
         );
   }

@@ -11,11 +11,10 @@ import { StarRatingComponent } from 'ng-starrating';
 export class MoviesPosterGridComponent implements OnInit {
 
   @Input() movies: Movie[];
-  baseUrl = 'https://image.tmdb.org/t/p/w500';
 
   constructor(public moviesService: MoviesService ) { }
 
   ngOnInit(): void {
-    console.log(this.movies);
+    // console.log(this.movies);
   }
 }
