@@ -10,16 +10,25 @@ import Swiper from 'swiper/bundle';
 export class SlideshowComponent implements OnInit, AfterViewInit {
 
   @Input() movies: Movie[];
+  public swiper: Swiper;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.movies);
+    // console.log(this.movies);
   }
 
   ngAfterViewInit(): void {
-    const mySwiper = new Swiper('.swiper-container', {
+    this.swiper = new Swiper('.swiper-container', {
       loop: true,
     });
+  }
+
+  public onSlideNext(): void {
+    this.swiper.slideNext();
+  }
+
+  public onSlidePreview(): void {
+    this.swiper.slidePrev();
   }
 }
