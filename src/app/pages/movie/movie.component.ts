@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 import { MovieDetails } from '../../interfaces/movieDetails-response';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie',
@@ -10,11 +11,12 @@ import { MovieDetails } from '../../interfaces/movieDetails-response';
 })
 export class MovieComponent implements OnInit {
 
-  movie: MovieDetails;
+  public movie: MovieDetails;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private moviesService: MoviesService) { }
+    private moviesService: MoviesService,
+    private location: Location) { }
 
   ngOnInit(): void {
     const { id } = this.activatedRoute.snapshot.params;
@@ -26,4 +28,8 @@ export class MovieComponent implements OnInit {
       });
   }
 
+  onBack(): void {
+    // Para regresar a la pantalla anterior.
+    this.location.back();
+  }
 }
