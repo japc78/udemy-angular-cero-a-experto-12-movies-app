@@ -11,6 +11,7 @@ import { Movie } from '../../interfaces/movieShowtimes-response';
 export class FindComponent implements OnInit {
 
   public movies: Movie[] = [];
+  public text: string;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -20,12 +21,12 @@ export class FindComponent implements OnInit {
 
     this.activateRoute.params
       .subscribe( params => {
-        console.log(params.text);
-        this.moviesService.findMovieForTitle(params.text)
+        // console.log(params.text);
+        this.text = params.text;
+        this.moviesService.findMovieForTitle(this.text)
           .subscribe(movies => {
             this.movies = movies;
-            console.log(movies);
-
+            // console.log(movies);
           });
       });
   }

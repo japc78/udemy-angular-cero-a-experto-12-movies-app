@@ -58,4 +58,8 @@ export class MoviesService {
     return this.http.get<MovieShowTimes>(`${this.BASE_URL}/search/movie`, { params })
       .pipe( map(resp => resp.results) );
   }
+
+  resetPage(): void {
+    this.page = 1;
+  }
 }
