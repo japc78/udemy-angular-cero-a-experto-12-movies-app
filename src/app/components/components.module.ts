@@ -6,13 +6,15 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import { MoviesPosterGridComponent } from './movies-poster-grid/movies-poster-grid.component';
 import { RatingModule } from 'ng-starrating';
 import { PipesModule } from '../pipes/pipes.module';
+import { CastSlideShowComponent } from './cast-slide-show/cast-slide-show.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     SlideshowComponent,
-    MoviesPosterGridComponent
+    MoviesPosterGridComponent,
+    CastSlideShowComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { PipesModule } from '../pipes/pipes.module';
   exports: [
     NavbarComponent,
     SlideshowComponent,
-    MoviesPosterGridComponent
+    MoviesPosterGridComponent,
+    CastSlideShowComponent
   ]
 })
 export class ComponentsModule { }

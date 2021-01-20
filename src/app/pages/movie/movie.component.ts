@@ -13,7 +13,7 @@ import { Cast } from 'src/app/interfaces/movieCast-response';
 export class MovieComponent implements OnInit {
 
   public movie: MovieDetails;
-  public movieCast: Cast[];
+  public movieCast: Cast[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,8 +39,8 @@ export class MovieComponent implements OnInit {
         if (!cast) {
           return;
         }
-        this.movieCast = cast;
-        console.log(this.movieCast);
+        this.movieCast = cast.filter( actor =>  actor.profile_path != null);
+        // console.log(this.movieCast);
       });
   }
 
