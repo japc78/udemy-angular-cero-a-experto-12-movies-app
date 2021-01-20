@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { MovieDetails } from '../interfaces/movieDetails-response';
 import { MovieShowTimes, Movie } from '../interfaces/movieShowtimes-response';
 import { Cast, MovieCast } from '../interfaces/movieCast-response';
@@ -67,13 +67,17 @@ export class MoviesService {
 
   // https://api.themoviedb.org/3/movie/651571?api_key=fb35a100cdeccee771a59a11d76de09a&language=es-ES
   getMovieDetails(id: string): Observable<MovieDetails> {
-    return this.http.get<MovieDetails>(`${this.BASE_URL}/movie/${id}`, { params: this.params });
+    return this.http.get<MovieDetails>(`${this.BASE_URL}/movie/${id}`, { params: this.params })
+      .pipe( catchError(err => of(null)));
   }
 
   getMovieCast(id: string): Observable<Cast[]> {
     return this.http.get<MovieCast>(`${this.BASE_URL}/movie/${id}/credits`, { params: this.params })
-      .pipe( map( resp => {
-        return resp.cast;
-      }));
+      .pipe(
+        map( resp => {
+          return resp.cast;
+        }),
+        catchError(err => of([]))
+      );
   }
 }

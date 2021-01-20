@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 import { MovieDetails } from '../../interfaces/movieDetails-response';
 import { Location } from '@angular/common';
@@ -18,19 +18,27 @@ export class MovieComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private moviesService: MoviesService,
-    private location: Location) { }
+    private location: Location,
+    private router: Router) { }
 
   ngOnInit(): void {
     const { id } = this.activatedRoute.snapshot.params;
 
     this.moviesService.getMovieDetails(id)
       .subscribe(movie => {
+        if (!movie) {
+          this.router.navigateByUrl('/home');
+          return;
+        }
         this.movie = movie;
         // console.log(this.movie);
       });
 
     this.moviesService.getMovieCast(id)
       .subscribe(cast => {
+        if (!cast) {
+          return;
+        }
         this.movieCast = cast;
         console.log(this.movieCast);
       });
